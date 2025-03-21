@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let date = new Date();
+      let month = date.getMonth();
+
+      console.log(month);
+
+      switch (month) {
+        case 1:
+        case 2:
+        case 3:
+          alert('봄입니다');
+          break;
+        case 4:
+        case 5:
+        case 6:
+          alert('여름입니다');
+          break;
+        case 7:
+        case 8:
+        case 9:
+          alert('가을 입니다');
+          break;
+        default:
+          alert('겨울 입니다');
+          break;
+      }
+    </script>
+  </body>
+</html>

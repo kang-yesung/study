@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>-label</title>
+    <style>
+      form,
+      /* *는 form 내부에 있는 모든 요소 */
+      form * {
+        border: 1px solid red;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- <h1>-label</h1>
+    <form action="">
+      <label for="username"> 이름 :</label>
+      <input type="text" id="username" placeholder="이름을 입력하세요" /> -->
+    <!-- 정렬은 CSS에서 -->
+    <!-- </form>  -->
+    <table border="1">
+      <tr>
+        <td><label for="username">이름</label></td>
+        <td><input id="username" type="text" name="username" /></td>
+      </tr>
+      <tr>
+        <td>성별</td>
+        <td>
+          <input id="man" type="radio" name="gender" value="m" />
+          <label for="man">남자</label>
+          <input id="woman" type="radio" name="gender" value="w" />
+          <label for="woman">여자</label>
+        </td>
+      </tr>
+    </table>
+    <input type="submit" value="가입" />
+
+    <!-- 테이블 태그로 정렬이 가능하지만 코드가 지저분해지고 복잡해짐 -->
+  </body>
+</html>
