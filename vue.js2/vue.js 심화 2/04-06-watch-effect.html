@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>파일명</title>
+  </head>
+  <body>
+    <div id="app">
+      <input type="text" v-model="name" placeholder="이름을 입력세요" /> <br />
+      <input type="text" v-model="user.age" placeholder="나이를 입력세요" />
+      <br />
+      <input type="text" v-model="user.email" placeholder="이메일을 입력세요" />
+    </div>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script type="text/javascript">
+      const { createApp, ref, reactive, watchEffect } = Vue;
+
+      const app = createApp({
+        setup() {
+          const x = ref(0);
+          const y = ref(0);
+          const sum = ref(0);
+
+          // 기본문법: watchEffect(callback())
+          // callback: 반응형 데이터가 변경될때 실행된 함수
+          // callback 내부에서 사용된 모든 반응형 데이터가 자동으로 추적됨
+
+          watchEffect(() => {
+            console.log(`x : ${x.value}로 변경됨`);
+            console.log(`y : ${y.value}로 변경됨`);
+          });
+
+          // watch(y, (current, old) => {
+          //   console.log(`y : ${old} --> ${current}`);
+          // });
+
+          return {
+            x,
+            y,
+            sum,
+          };
+        },
+      });
+
+      const vm = app.mount("#app");
+    </script>
+  </body>
+</html>
