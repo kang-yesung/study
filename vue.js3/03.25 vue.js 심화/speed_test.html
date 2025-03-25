@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>파일명</title>
+    <style>
+      .speedbtn {
+        width: 200px;
+        height: 70px;
+      }
+
+      .active {
+        background-color: green;
+      }
+      .speedconsol {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <h2>⏱️ 반사 신경 테스트 게임</h2>
+
+      <button @click="startgame">게임시작</button>
+      <button
+        class="speedbtn"
+        v-show="speedbtn"
+        @click="speedbtnclick"
+        :class="{active: backColor}"
+      >
+        클릭하세요!
+      </button>
+      <p :class="{speedconsol: fontColor}" v-show="tooSoon">{{tooSoon}}</p>
+
+      <div>
+        반응속도:
+        <span v-for="time in reactionTimes">{{time}}{{' '}}</span>
+      </div>
+      <div>반응속도 평균 : {{average}}</div>
+    </div>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script type="text/javascript">
+      const { createApp, ref, computed } = Vue;
+
+      const app = createApp({
+        setup() {
+          // 배경 색상 변경
+          const backColor = ref(false);
+          //스피드 버튼
+          const speedbtn = ref(false);
+
+          //글자 색상상
+          const fontColor = ref(false);
+
+          //출력콘솔
+          const tooSoon = ref('');
+          const reactionTimes = ref([]);
+
+          // 버튼 색상 변경시작 시간값 저장
+          const speed = ref(0);
+          //스타트 게임버튼
+          const startgame = () => {
+            speedbtn.value = true;
+            tooSoon.value = '';
+            backColor.value = false;
+            fontColor.value = false;
+            setTimeout(() => {
+              speed.value = performance.now();
+              backColor.value = true;
+            }, Math.random() * 3000 + 150);
+          };
+
+          const speedbtnclick = () => {
+            if (!backColor.value) {
+              tooSoon.value = '❌ 너무 빨리 클릭 하셨어요! 다시 클릭해 주세요';
+              fontColor.value = true;
+            } else {
+              const reactionTime = (performance.now() - speed.value).toFixed(0);
+              tooSoon.value = `⏰ 반응 속도: ${reactionTime}ms`;
+              reactionTimes.value.push(reactionTime);
+            }
+            speedbtn.value = false;
+            backColor.value = false;
+          };
+
+          const average = computed(() => {
+            if (reactionTimes.value.length === 0) return 0;
+            const sum = reactionTimes.value.reduce(
+              (acc, curr) => acc + Number(curr),
+              0
+            );
+            return (sum / reactionTimes.value.length).toFixed(0);
+          });
+
+          return {
+            speedbtn,
+            startgame,
+            tooSoon,
+            backColor,
+            speedbtnclick,
+            fontColor,
+            reactionTimes,
+            average,
+          };
+        },
+      });
+
+      const vm = app.mount('#app');
+    </script>
+  </body>
+</html>
