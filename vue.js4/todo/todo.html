@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>파일명</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css"
+      integrity="sha512-NmLkDIU1C/C88wi324HBc+S2kLhi08PN5GDeUVVVC/BVt/9Izdsc9SVeVfA1UZbY3sHUlDSyRXhCzHfr6hmPPw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div id="app">
+      <!-- 앱제목 -->
+      <header class="hd">
+        <h1>작심</h1>
+      </header>
+      <!-- 입력폼 -->
+      <div class="input-container mw">
+        <input type="text" placeholder="할일을 입력하세요" />
+        <button>추가</button>
+      </div>
+      <!-- 필터 탭 -->
+      <div class="filter-container mw">
+        <button class="active">전체</button>
+        <button>미완료</button>
+        <button>완료</button>
+      </div>
+      <!-- 할일 목록 -->
+      <ul class="todo-list mw">
+        <li class="completed" v-for="todo in todos" :key="todo.id">
+          <input type="checkbox" />
+          <span>{{todo.text}}</span>
+          <time>{{todo.createdAt()}}</time>
+          <button>삭제 <i class="fa fa-trash"></i></button>
+        </li>
+      </ul>
+      <!-- 요약정보 -->
+      <div class="todo-summary mw">
+        <p><span>미완료항목</span><span>0</span></p>
+        <p><span>완료항목</span><span>0</span></p>
+        <button>완료된 항목 삭제</button>
+      </div>
+    </div>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script type="text/javascript">
+      const { createApp, ref } = Vue;
+
+      const app = createApp({
+        setup() {
+          const todos = ref([
+            {
+              id: 1, // 고유 식별자
+              text: "할 일 내용", // 할 일 텍스트
+              completed: false, // 완료 상태
+              createdAt: Date(), // 생성 시간
+            },
+            {
+              id: 2, // 고유 식별자
+              text: "할 일 내용", // 할 일 텍스트
+              completed: false, // 완료 상태
+              createdAt: Date, // 생성 시간
+            },
+            {
+              id: 3, // 고유 식별자
+              text: "할 일 내용", // 할 일 텍스트
+              completed: false, // 완료 상태
+              createdAt: Date, // 생성 시간
+            },
+            {
+              id: 4, // 고유 식별자
+              text: "할 일 내용", // 할 일 텍스트
+              completed: false, // 완료 상태
+              createdAt: Date, // 생성 시간
+            },
+            {
+              id: 5, // 고유 식별자
+              text: "할 일 내용", // 할 일 텍스트
+              completed: false, // 완료 상태
+              createdAt: Date, // 생성 시간
+            },
+            {
+              id: 6, // 고유 식별자
+              text: "할 일 내용", // 할 일 텍스트
+              completed: false, // 완료 상태
+              createdAt: Date, // 생성 시간
+            },
+          ]);
+
+          return {
+            todos,
+          };
+        },
+      });
+
+      const vm = app.mount("#app");
+    </script>
+  </body>
+</html>
