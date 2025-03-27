@@ -1,0 +1,22 @@
+<script setup>
+import CheckboxItem2 from "./components/CheckboxItem2.vue";
+
+import { ref } from "vue";
+
+const idols = ref([
+  { id: 1, name: "BTS", checked: true },
+  { id: 2, name: "Black Pink", checked: false },
+  { id: 3, name: "EXO", checked: false },
+  { id: 4, name: "ITZY", checked: false },
+]);
+</script>
+
+<template>
+  <div class="app">
+    <h1>App 컴포넌</h1>
+    <hr />
+    <CheckboxItem2 v-for="idol in idols" :key="idol.id" :idol="idol" />
+  </div>
+</template>
+
+<style scoped></style>
